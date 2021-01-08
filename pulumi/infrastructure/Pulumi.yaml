@@ -1,0 +1,3 @@
+name: cicd-demo-infrastructure
+runtime: nodejs
+description: Infrastructure for cicd demo
