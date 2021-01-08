@@ -1,0 +1,14 @@
+{
+  "name": "cicd-pipeline-with-pulumi",
+  "version": "1.0.0",
+  "private": true,
+  "description": "CICD demo with Pulumi",
+  "author": "Ivo Kovacevic",
+  "scripts": {
+    "start": "node ./src/app"
+  },
+  "dependencies": {
+    "ejs": "~2.6.1",
+    "express": "~4.16.1"
+  }
+}
