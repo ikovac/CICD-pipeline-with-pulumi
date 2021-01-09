@@ -1,7 +1,4 @@
 #!/bin/bash
-apt update
-apt install nodejs -y
-apt install npm -y
-npm i npm@latest -g
-npm i n -g
-n stable
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+source ~/.nvm/nvm.sh
+nvm install 12
