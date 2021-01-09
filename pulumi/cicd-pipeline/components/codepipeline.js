@@ -3,7 +3,7 @@
 const aws = require('@pulumi/aws');
 const pulumi = require('@pulumi/pulumi');
 const { application, applicationDeploymentGroup } = require('./codedeploy');
-const { codePipelineBucket } = require('./s3');
+const codePipelineBucket = require('./s3');
 const { codePipelineRole } = require('./iam');
 
 const config = new pulumi.Config();

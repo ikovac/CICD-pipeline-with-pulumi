@@ -2,7 +2,7 @@
 
 const aws = require('@pulumi/aws');
 const pulumi = require('@pulumi/pulumi');
-const { codePipelineBucket } = require('./s3');
+const codePipelineBucket = require('./s3');
 
 const codeDeployRole = new aws.iam.Role('codedeploy-role', {
   assumeRolePolicy: {
@@ -68,6 +68,6 @@ new aws.iam.RolePolicy('codepipelinePolicy', {
       }
     ]
   }
-});
+}, { dependsOn: codePipelineBucket });
 
 module.exports = { codeDeployRole, codePipelineRole };
