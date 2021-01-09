@@ -16,7 +16,4 @@ const ec2SecurityGroup = new aws.ec2.SecurityGroup('server-sec-grp', {
   vpcId: vpc.id
 });
 
-module.exports = {
-  vpc,
-  ec2SecurityGroup
-};
+module.exports = { vpc, ec2SecurityGroup };

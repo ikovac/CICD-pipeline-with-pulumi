@@ -3,6 +3,7 @@
 const aws = require('@pulumi/aws');
 const pulumi = require('@pulumi/pulumi');
 const { ec2SecurityGroup } = require('./vpc');
+const { iamInstanceProfile } = require('./iam');
 
 const config = new pulumi.Config();
 
@@ -25,7 +26,7 @@ const server = new aws.ec2.Instance('server', {
   instanceType: 't2.micro',
   keyName: sshKeyPair.keyName,
   vpcSecurityGroupIds: [ec2SecurityGroup.id],
-  // iamInstanceProfile,
+  iamInstanceProfile, // Add IAM role to the instance
   userData,
   tags: {
     name: 'pulumi-demo'
