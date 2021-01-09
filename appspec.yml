@@ -1,7 +1,7 @@
 version: 0.0
 os: linux
 files:
-  - source: /src
+  - source: /
     destination: /home/ubuntu/app
 hooks:
   BeforeInstall:
