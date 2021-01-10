@@ -22,7 +22,7 @@ chmod +x ./install
 ./install auto > /tmp/logfile`;
 
 const server = new aws.ec2.Instance('server', {
-  ami: 'ami-0885b1f6bd170450c', // Ubuntu Server 20.04 LTS (HVM), SSD Volume Type
+  ami: 'ami-0f9bb08c3e41c8c9d', // Ubuntu Server 20.04 LTS (HVM), SSD Volume Type
   instanceType: 't2.micro',
   keyName: sshKeyPair.keyName,
   vpcSecurityGroupIds: [ec2SecurityGroup.id],
