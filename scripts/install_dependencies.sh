@@ -5,4 +5,4 @@ nvm install 12
 
 cd /home/ubuntu/app
 npm i
-npm i -g pm2
+sudo npm i -g pm2
