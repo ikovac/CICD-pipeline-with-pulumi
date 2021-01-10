@@ -7,3 +7,5 @@ sudo chmod 777 -R /home/ubuntu/app
 cd /home/ubuntu/app
 npm i
 npm i -g pm2
+echo $(which pm2)
+# export PATH=$PATH:/opt/node/lib/node_modules/pm2/bin
