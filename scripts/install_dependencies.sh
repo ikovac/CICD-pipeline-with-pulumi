@@ -7,6 +7,4 @@ sudo chmod 777 -R /home/ubuntu/app
 cd /home/ubuntu/app
 npm i
 npm i -g pm2
-echo $(which pm2)
-export PATH=$PATH:$(which pm2)
-echo $PATH
+sudo ln -s $(which pm2) /usr/bin/pm2
