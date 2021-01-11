@@ -36,7 +36,7 @@ const codePipeline = new aws.codepipeline.Pipeline('cicd-demo-pipeline', {
         configuration: {
           Owner: 'ikovac',
           Repo: 'CICD-pipeline-with-pulumi',
-          Branch: 'fixerror',
+          Branch: 'master',
           OAuthToken: config.getSecret('githubAuthToken')
         }
       }]
