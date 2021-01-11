@@ -7,4 +7,3 @@ sudo ln -s $(which node) /usr/bin/node
 
 npm i -g pm2
 sudo ln -s $(which pm2) /usr/bin/pm2
-echo "PM2: $(which pm2)"
