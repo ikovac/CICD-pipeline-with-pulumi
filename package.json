@@ -10,6 +10,7 @@
   "dependencies": {
     "@pulumi/aws": "^3.22.1",
     "@pulumi/awsx": "^0.23.0",
+    "@pulumi/github": "^2.4.1",
     "@pulumi/pulumi": "^2.17.0",
     "ejs": "~2.6.1",
     "express": "~4.16.1"
