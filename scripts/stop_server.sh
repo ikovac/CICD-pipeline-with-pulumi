@@ -1,8 +1,8 @@
 #!/bin/bash
 sudo rm -rf /home/ubuntu/app
-isExistApp = `pgrep pm2`
-if [[ -n  $isExistApp ]]; then
+if type -P pm2 &>/dev/null
+then
   echo "Deleting running app..."
-  pm2 stop demo-app
-  pm2 delete demo-app
+  pm2 stop demo-app 2> /dev/null
+  pm2 delete demo-app 2> /dev/null
 fi
