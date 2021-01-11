@@ -2,11 +2,12 @@
 
 const aws = require('@pulumi/aws');
 const pulumi = require('@pulumi/pulumi');
+const github = require('@pulumi/github');
 const { application, applicationDeploymentGroup } = require('./codedeploy');
 const codePipelineBucket = require('./s3');
 const { codePipelineRole } = require('./iam');
 
-const config = new pulumi.Config();
+const githubConfig = new pulumi.Config('github');
 
 const s3kmskey = aws.kms.getAlias({
   name: 'alias/aws/s3'
@@ -34,10 +35,10 @@ const codePipeline = new aws.codepipeline.Pipeline('cicd-demo-pipeline', {
         version: '1',
         outputArtifacts: ['source_output'],
         configuration: {
-          Owner: 'ikovac',
-          Repo: 'CICD-pipeline-with-pulumi',
-          Branch: 'master',
-          OAuthToken: config.getSecret('githubAuthToken')
+          Owner: githubConfig.get('organization'),
+          Repo: githubConfig.get('repo'),
+          Branch: githubConfig.get('branch'),
+          OAuthToken: githubConfig.getSecret('token')
         }
       }]
     },
@@ -58,5 +59,31 @@ const codePipeline = new aws.codepipeline.Pipeline('cicd-demo-pipeline', {
     }
   ]
 }, { dependsOn: [application, applicationDeploymentGroup] });
+
+const webhookSecret = githubConfig.getSecret('webhookSecret');
+const codePipelineWebhook = new aws.codepipeline.Webhook('demo-code-pipeline-webhook', {
+  authentication: 'GITHUB_HMAC',
+  targetAction: 'Source',
+  targetPipeline: codePipeline.name,
+  authenticationConfiguration: {
+    secretToken: webhookSecret
+  },
+  filters: [{
+    jsonPath: '$.ref',
+    matchEquals: 'refs/heads/{Branch}'
+  }]
+});
+
+// eslint-disable-next-line no-new
+new github.RepositoryWebhook('demo-code-pipeline-repo-webhook', {
+  repository: githubConfig.get('repo'),
+  configuration: {
+    url: codePipelineWebhook.url,
+    contentType: 'json',
+    insecureSsl: true,
+    secret: webhookSecret
+  },
+  events: ['push']
+});
 
 module.exports = codePipeline;
