@@ -16,6 +16,7 @@ sudo su
 apt update
 apt install ruby -y
 apt install wget -y
+apt install awscli
 cd /home/ubuntu
 wget https://aws-codedeploy-us-east-1.s3.us-east-1.amazonaws.com/latest/install
 chmod +x ./install
