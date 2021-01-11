@@ -34,4 +34,11 @@ const server = new aws.ec2.Instance('server', {
   }
 });
 
+// eslint-disable-next-line no-new
+new aws.ssm.Parameter('public-dnv-env', {
+  name: '/dev/publicDns',
+  type: 'String',
+  value: server.publicDns
+});
+
 module.exports = server;
