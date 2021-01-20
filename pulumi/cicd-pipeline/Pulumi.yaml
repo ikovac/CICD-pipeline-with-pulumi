@@ -8,8 +8,10 @@ template:
       default: us-east-1
     github:organization:
       description: Account name
+      default: ikovac
     github:repo:
       description: Repository name
+      default: CICD-pipeline-with-pulumi
     github:branch:
       description: Branch name
       default: master
