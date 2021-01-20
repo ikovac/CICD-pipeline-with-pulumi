@@ -1,3 +1,21 @@
 name: cicd-demo-pipeline
 runtime: nodejs
 description: CICD pipeline for cicd demo
+template:
+  config:
+    aws:region:
+      description: The AWS region to deploy into
+      default: us-east-1
+    github:organization:
+      description: Account name
+    github:repo:
+      description: Repository name
+    github:branch:
+      description: Branch name
+      default: master
+    github:token:
+      description: Personal access tokens to access the GitHub API
+      secret: true
+    github:webhookSecret:
+      description: The shared secret for the GitHub repository webhook
+      secret: true
